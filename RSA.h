@@ -12,10 +12,10 @@ namespace bm = boost::multiprecision;
 
 struct Key
 {
-	//¹«Ô¿(ekey, pkey): (e, n)
+	//å…¬é’¥(ekey, pkey): (e, n)
 	bm::int1024_t pkey;
 	bm::int1024_t ekey;
-	//Ë½Ô¿(dkey, pkey): (d, n)
+	//ç§é’¥(dkey, pkey): (d, n)
 	bm::int1024_t dkey;
 };
 
@@ -27,26 +27,27 @@ public:
 	{
 		return _key;
 	}
+	
 	void ecrept(const char* plain_file_in, const char* ecrept_file_out,
-		bm::int1024_t ekey, bm::int1024_t pkey);//¶ÔÎÄ¼ş½øĞĞ½âÃÜ
+		bm::int1024_t ekey, bm::int1024_t pkey);//å¯¹æ–‡ä»¶è¿›è¡Œè§£å¯†
 	void decrept(const char* ecrept_file_in, const char* plain_file_out,
-		bm::int1024_t dkey, bm::int1024_t pkey);//¶ÔÎÄ¼ş½øĞĞ¼ÓÃÜ
+		bm::int1024_t dkey, bm::int1024_t pkey);//å¯¹æ–‡ä»¶è¿›è¡ŒåŠ å¯†
 
-	std::vector<bm::int1024_t> ecrept(std::string& str_in, bm::int1024_t ekey, bm::int1024_t pkey);//¶Ô×Ö·û´®½øĞĞ¼ÓÃÜ
-	std::string decrept(std::vector<bm::int1024_t>& ecrept_str, bm::int1024_t dkey, bm::int1024_t pkey);//¶Ô×Ö·û´®½øĞĞ½âÃÜ	
+	std::vector<bm::int1024_t> ecrept(std::string& str_in, bm::int1024_t ekey, bm::int1024_t pkey);//å¯¹å­—ç¬¦ä¸²è¿›è¡ŒåŠ å¯†
+	std::string decrept(std::vector<bm::int1024_t>& ecrept_str, bm::int1024_t dkey, bm::int1024_t pkey);//å¯¹å­—ç¬¦ä¸²è¿›è¡Œè§£å¯†	
 
-	void printInfo(std::vector<bm::int1024_t>& ecrept_str);//´òÓ¡½âÃÜºóµÄĞÅÏ¢
+	void printInfo(std::vector<bm::int1024_t>& ecrept_str);//æ‰“å°è§£å¯†åçš„ä¿¡æ¯
 private:
-	//¼ÓÃÜµ¥¸öĞÅÏ¢
-	bm::int1024_t ecrept(bm::int1024_t msg, bm::int1024_t ekey, bm::int1024_t pkey);//¼ÓÃÜ
-	bm::int1024_t produce_prime();//²úÉúËØÊı
-	bool is_prime(bm::int1024_t prime);//ÅĞ¶ÏÊÇ·ñÎªËØÊı
-	void produce_keys();//´æ·Å¹«Ô¿ÃØÔ¿
+	//åŠ å¯†å•ä¸ªä¿¡æ¯
+	bm::int1024_t ecrept(bm::int1024_t msg, bm::int1024_t ekey, bm::int1024_t pkey);//åŠ å¯†
+	bm::int1024_t produce_prime();//äº§ç”Ÿç´ æ•°
+	bool is_prime(bm::int1024_t prime);//åˆ¤æ–­æ˜¯å¦ä¸ºç´ æ•°
+	void produce_keys();//å­˜æ”¾å…¬é’¥ç§˜é’¥
 	bm::int1024_t produce_pkey(bm::int1024_t prime1, bm::int1024_t prime2);//pq->n
 	bm::int1024_t produce_orla(bm::int1024_t prime1, bm::int1024_t prime2);//(p-1)(q-1)
-	bm::int1024_t produce_ekey(bm::int1024_t orla);//²úÉú¹«Ô¿
-	bm::int1024_t produce_gcd(bm::int1024_t ekey, bm::int1024_t orla);//»¥ÖÊ
-	bm::int1024_t produce_dkey(bm::int1024_t ekey, bm::int1024_t orla);//²úÉúÃØÔ¿
+	bm::int1024_t produce_ekey(bm::int1024_t orla);//äº§ç”Ÿå…¬é’¥
+	bm::int1024_t produce_gcd(bm::int1024_t ekey, bm::int1024_t orla);//äº’è´¨
+	bm::int1024_t produce_dkey(bm::int1024_t ekey, bm::int1024_t orla);//äº§ç”Ÿç§˜é’¥
 
 private:
 	Key _key;
